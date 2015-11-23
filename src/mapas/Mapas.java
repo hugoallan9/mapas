@@ -12,13 +12,15 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
-
+import reportestrimestrales.Mapa;
 /**
  *
  * @author ine031
@@ -32,13 +34,31 @@ public class Mapas {
  
         String rutaOrigen = "/var/www/archivos/CSV_mapas/";
         String rutaDestino = "/home/ineservidor/Mapas/";
-        
-        Mapa mapa = new Mapa(rutaOrigen, rutaDestino);
-       
+        /*String comando = "rm -R " + rutaDestino + "*";
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec(comando);
+            try {
+                p.waitFor();
+                BufferedReader reader = 
+                new BufferedReader(new InputStreamReader(p.getInputStream()));
 
+                String line = "";			
+                while ((line = reader.readLine())!= null) {
+                           System.out.println(line);
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Mapas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Mapas.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+       
         
-           
-  }
+        Mapa mapa = new Mapa(rutaOrigen, rutaDestino);     
+        //mapa.descargaDepartamental();
+        mapa.mapasDepAutomaticos();          
+}
     
     
    
